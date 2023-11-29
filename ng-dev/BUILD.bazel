@@ -57,7 +57,6 @@ esbuild_esm_bundle(
         "index.ts",
         # These additional entry-points need to be generated since the `ng-dev` tool tries
         # to launch these files/scripts dynamically (through e.g. `spawn` or `fork`).
-        "//ng-dev/release/build:build-worker.ts",
         "//ng-dev/pr/merge:strategies/commit-message-filter.ts",
     ],
     external = NG_DEV_EXTERNALS,
@@ -83,5 +82,8 @@ pkg_npm(
     deps = [
         ":bundles",
         ":types",
+    ],
+    tags = [
+        "release-package",
     ],
 )

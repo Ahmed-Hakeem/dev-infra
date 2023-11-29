@@ -9,8 +9,8 @@
 import {lstatSync} from 'fs';
 import {resolve} from 'path';
 import {Argv, Arguments, CommandModule} from 'yargs';
+import {buildAllTargets} from '../../release/build/index.js';
 
-import {BuildWorker} from '../../release/build/index.js';
 import {ChildProcess} from '../../utils/child-process.js';
 import {Log, green} from '../../utils/logging.js';
 import {getConfig} from '../../utils/config.js';
@@ -46,7 +46,7 @@ async function handler({projectRoot}: Arguments<BuildAndLinkOptions>) {
   const config = await getConfig();
   assertValidReleaseConfig(config);
 
-  const builtPackages = await BuildWorker.invokeBuild();
+  const builtPackages = await buildAllTargets();
 
   if (builtPackages === null) {
     Log.error(`  ✘   Could not build release output. Please check output above.`);

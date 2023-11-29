@@ -49,6 +49,9 @@ pkg_npm(
         "//lint-rules/tslint:static_files",
         "//shared-scripts:static_files",
     ],
+    tags = [
+        "release-package",
+    ],
     substitutions = NPM_PACKAGE_SUBSTITUTIONS,
     deps = [
         "//lint-rules/stylelint:lib",
